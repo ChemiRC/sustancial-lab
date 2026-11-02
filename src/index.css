@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal: #1D1E22;
+  --color-charcoal-deep: #16171A;
+  --color-charcoal-elevated: #23252A;
+  --color-crimson: #800028;
+  --color-crimson-hover: #9B0031;
+  --color-bone: #F4F4F0;
+  --color-bone-dim: rgba(244, 244, 240, 0.68);
+  --color-bone-muted: rgba(244, 244, 240, 0.44);
+  --color-grid: rgba(255, 255, 255, 0.14);
+
+  --font-display: "Anton", "Bebas Neue", Impact, sans-serif;
+  --font-condensed: "Bebas Neue", "Anton", Impact, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: "Newsreader", Georgia, Cambria, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  --bg-primary: #1D1E22;
+  --accent-crimson: #800028;
+  --text-bone: #F4F4F0;
+  --grid-hairline: rgba(255, 255, 255, 0.14);
+  color-scheme: dark;
+}
+
+html {
+  background-color: var(--bg-primary);
+  color: var(--text-bone);
+  font-family: var(--font-sans);
+  scroll-padding-top: 64px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-bone);
+  overflow-x: hidden;
+}
+
+/* Subtle underground print / analog paper noise overlay */
+.editorial-grain {
+  background-image: radial-gradient(rgba(244, 244, 240, 0.045) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Exposed 1px architectural hairline utilities matching rgba(255, 255, 255, 0.14) */
+.hairline-t {
+  border-top: 1px solid var(--grid-hairline);
+}
+.hairline-b {
+  border-bottom: 1px solid var(--grid-hairline);
+}
+.hairline-l {
+  border-left: 1px solid var(--grid-hairline);
+}
+.hairline-r {
+  border-right: 1px solid var(--grid-hairline);
+}
+.hairline-box {
+  border: 1px solid var(--grid-hairline);
+}
+
+/* Monumental display wordmark locked tightly between cap-height and baseline */
+.wordmark-monumental {
+  font-family: var(--font-display);
+  line-height: 0.81;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+}
+
+/* Custom brutalist scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #16171A;
+  border-left: 1px solid var(--grid-hairline);
+}
+::-webkit-scrollbar-thumb {
+  background: #800028;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9B0031;
+}
