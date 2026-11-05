@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight, Compass, Home, X } from 'lucide-react';
-import { TechTag } from '../ui/TechTag';
+import { ArrowUpRight, Home, X } from 'lucide-react';
 
 /**
- * Panel interactivo para seleccionar cualquier punto del índice
- * o volver al inicio en cualquier momento.
+ * Menú desplegable de navegación (IndexDrawer).
+ * Permite cambiar entre secciones o volver a la portada de forma fluida en móvil y escritorio.
  */
 export function IndexDrawer({
   isOpen,
@@ -33,129 +32,115 @@ export function IndexDrawer({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-3 sm:p-6 overflow-y-auto">
-          {/* Telón de fondo */}
+        <div className="fixed inset-0 z-40 pt-[60px] flex flex-col">
+          {/* Fondo translúcido */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/85 backdrop-blur-sm"
+            className="fixed inset-0 top-[60px] bg-black/80 backdrop-blur-sm"
           />
 
-          {/* Caja brutalista del índice */}
+          {/* Panel desplegable */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 16 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: 16 }}
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 w-full max-w-3xl border border-white/20 bg-[#1D1E22] shadow-[0_25px_60px_rgba(0,0,0,0.85)] my-auto overflow-hidden"
+            className="relative z-10 w-full mx-auto max-w-[1440px] border-x border-b border-white/15 bg-[#1D1E22] shadow-2xl max-h-[calc(100vh-60px)] overflow-y-auto"
           >
-            {/* Cabecera del panel */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/15 bg-[#16171A]">
-              <div className="flex items-center gap-3">
-                <Compass size={15} strokeWidth={1.5} className="text-[#800028]" />
-                <span className="font-mono text-xs uppercase tracking-[0.18em] text-[#F4F4F0] font-bold">
-                  {navigation.indexDrawerTitle}
-                </span>
-              </div>
-
+            {/* Cabecera del menú */}
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-white/15 bg-[#16171A]">
+              <span className="font-mono text-xs uppercase tracking-[0.16em] text-[#F4F4F0]/80">
+                {navigation.indexDrawerTitle}
+              </span>
               <button
                 type="button"
                 onClick={onClose}
-                className="inline-flex items-center gap-1.5 px-3 py-1 border border-white/15 font-mono text-[11px] tracking-[0.14em] uppercase text-[#F4F4F0]/70 hover:bg-[#800028] hover:text-[#F4F4F0] hover:border-[#800028] transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-white/15 font-mono text-xs tracking-[0.12em] uppercase text-[#F4F4F0]/80 hover:bg-[#800028] hover:text-[#F4F4F0] hover:border-[#800028] transition-colors cursor-pointer"
               >
-                <span>[CERRAR]</span>
+                <span>{navigation.menuCloseLabel}</span>
                 <X size={14} strokeWidth={1.5} />
               </button>
             </div>
 
-            {/* Fila destacada: Volver al Inicio */}
-            <div className="p-4 sm:p-5 border-b border-white/15 bg-[#18191E]">
+            {/* Opción de Portada / Inicio */}
+            <div className="p-4 sm:p-6 border-b border-white/15 bg-[#18191E]">
               <button
                 type="button"
                 onClick={() => handleSelect('inicio')}
-                className={`w-full p-4 border transition-colors flex items-center justify-between cursor-pointer ${
+                className={`w-full p-4 border transition-colors flex items-center justify-between gap-4 cursor-pointer text-left ${
                   currentScreen === 'inicio'
                     ? 'border-[#800028] bg-[#800028]/20 text-[#F4F4F0]'
-                    : 'border-white/15 bg-[#141518] hover:border-[#800028] hover:bg-[#800028]/10 text-[#F4F4F0]/90'
+                    : 'border-white/15 bg-[#141518] hover:border-[#800028] text-[#F4F4F0]/90'
                 }`}
               >
                 <div className="flex items-center gap-3.5">
-                  <span className="p-2 border border-white/15 bg-[#1D1E22] text-[#800028]">
+                  <span className="p-2.5 border border-white/15 bg-[#1D1E22] text-[#800028] shrink-0">
                     <Home size={16} strokeWidth={1.5} />
                   </span>
-                  <div className="text-left">
-                    <p className="font-mono text-xs uppercase tracking-[0.16em] font-bold">
-                      [00. PORTADA PRINCIPAL / INICIO]
+                  <div>
+                    <p className="font-mono text-xs uppercase tracking-[0.14em] font-bold">
+                      Portada Principal
                     </p>
-                    <p className="font-sans text-xs text-[#F4F4F0]/60 mt-0.5">
-                      Volver a la portada monumental, retícula tipográfica y presentación
+                    <p className="font-sans text-xs text-[#F4F4F0]/65 mt-0.5">
+                      Presentación de Sustancial Lab e introducción general
                     </p>
                   </div>
                 </div>
 
-                <span className="inline-flex items-center gap-1 font-mono text-[11px] tracking-[0.14em] text-[#800028] font-bold">
-                  {currentScreen === 'inicio' ? '[ACTUAL]' : 'IR A INICIO →'}
+                <span className="font-mono text-xs tracking-[0.12em] uppercase text-[#800028] font-bold shrink-0">
+                  {currentScreen === 'inicio' ? 'Actual' : 'Ir →'}
                 </span>
               </button>
             </div>
 
-            {/* Lista de las 4 secciones del índice */}
-            <div className="p-4 sm:p-6 space-y-2.5 max-h-[62vh] overflow-y-auto">
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#F4F4F0]/45 px-1 mb-2">
-                SELECCIONA UNA PANTALLA DEL ÍNDICE:
-              </p>
-
-              {navigation.items.map((item) => {
+            {/* Lista de secciones principales */}
+            <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/15">
+              {navigation.items.map((item, idx) => {
                 const isActive = currentScreen === item.id;
                 return (
                   <button
                     key={item.id}
                     type="button"
                     onClick={() => handleSelect(item.id)}
-                    className={`w-full p-4 border text-left transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer group ${
+                    className={`w-full p-5 sm:p-6 text-left transition-colors flex flex-col justify-between gap-4 cursor-pointer group ${
+                      idx >= 2 ? 'md:border-t border-white/15' : ''
+                    } ${
                       isActive
-                        ? 'border-[#800028] bg-[#800028]/25 text-white'
-                        : 'border-white/15 bg-[#16171A]/70 hover:border-white/35 hover:bg-[#1A1B20] text-[#F4F4F0]/80'
+                        ? 'bg-[#800028]/20 text-[#F4F4F0]'
+                        : 'hover:bg-white/[0.03] text-[#F4F4F0]/85'
                     }`}
                   >
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2.5">
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-between gap-2">
                         <span className="font-mono text-xs font-bold text-[#800028] tracking-[0.16em]">
-                          [{item.index}]
+                          {item.index} · {item.label.toUpperCase()}
                         </span>
-                        <h3 className="font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.14em] text-[#F4F4F0]">
-                          {item.title}
-                        </h3>
-                        {isActive && (
-                          <TechTag variant="crimson">ACTIVA</TechTag>
-                        )}
+                        <ArrowUpRight
+                          size={15}
+                          strokeWidth={1.5}
+                          className="text-[#F4F4F0]/50 group-hover:text-[#800028] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        />
                       </div>
-                      <p className="font-sans text-xs leading-relaxed text-[#F4F4F0]/65 sm:max-w-lg">
+                      <h3 className="font-serif text-lg sm:text-xl text-[#F4F4F0]">
+                        {item.title}
+                      </h3>
+                      <p className="font-sans text-xs sm:text-sm leading-relaxed text-[#F4F4F0]/65">
                         {item.description}
                       </p>
-                    </div>
-
-                    <div className="flex items-center justify-end">
-                      <span className="inline-flex items-center gap-1.5 font-mono text-xs tracking-[0.14em] uppercase text-[#F4F4F0]/70 group-hover:text-[#800028] transition-colors">
-                        <span>{isActive ? 'VIENDO' : 'ENTRAR'}</span>
-                        <ArrowUpRight
-                          size={14}
-                          strokeWidth={1.5}
-                          className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                        />
-                      </span>
                     </div>
                   </button>
                 );
               })}
             </div>
 
-            {/* Pie del modal */}
-            <div className="px-6 py-3 border-t border-white/15 bg-[#16171A] flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] tracking-[0.15em] text-[#F4F4F0]/45">
-              <span>{meta.catalogCode}</span>
-              <span>ESC PARA CERRAR</span>
+            {/* Pie del menú */}
+            <div className="px-4 sm:px-6 py-3 border-t border-white/15 bg-[#16171A] flex items-center justify-between font-mono text-[11px] text-[#F4F4F0]/50">
+              <span>{meta.subtitle}</span>
+              <span>{meta.city}</span>
             </div>
           </motion.div>
         </div>

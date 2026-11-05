@@ -1,28 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <!-- Fondo carbón oscuro #1D1E22 -->
-  <rect width="64" height="64" fill="#1D1E22" />
-  
-  <!-- Borde arquitectónico carmesí #800028 -->
-  <rect x="1" y="1" width="62" height="62" fill="none" stroke="#800028" stroke-width="2" />
-  
-  <!-- Líneas de cuadrícula constructiva de 1px -->
-  <line x1="16" y1="0" x2="16" y2="64" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1" />
-  <line x1="48" y1="0" x2="48" y2="64" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1" />
-  <line x1="0" y1="20" x2="64" y2="20" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1" />
-  <line x1="0" y1="44" x2="64" y2="44" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1" />
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128' width='128' height='128'>
+  <defs>
+    <linearGradient id='vialGrad' x1='0%' y1='0%' x2='100%' y2='100%'>
+      <stop offset='0%' stop-color='#9E0034'/>
+      <stop offset='45%' stop-color='#800028'/>
+      <stop offset='100%' stop-color='#58001B'/>
+    </linearGradient>
+    <linearGradient id='stopperGrad' x1='0%' y1='0%' x2='100%' y2='0%'>
+      <stop offset='0%' stop-color='#EAEAE6'/>
+      <stop offset='50%' stop-color='#FFFFFF'/>
+      <stop offset='100%' stop-color='#C8C8C2'/>
+    </linearGradient>
+  </defs>
 
-  <!-- Monograma monumental 'S' en carmesí #800028 y blanco hueso #F4F4F0 -->
-  <text 
-    x="32" 
-    y="47" 
-    font-family="'Anton', 'Bebas Neue', Impact, sans-serif" 
-    font-size="44" 
-    font-weight="bold" 
-    fill="#800028" 
-    text-anchor="middle"
-    letter-spacing="-1"
-  >S</text>
+  <!-- Fondo carbón oscuro con esquinas redondeadas -->
+  <rect width='128' height='128' rx='28' fill='#1D1E22' stroke='rgba(255, 255, 255, 0.18)' stroke-width='2'/>
 
-  <!-- Marca técnica de registro esquina -->
-  <rect x="4" y="4" width="3" height="3" fill="#F4F4F0" />
+  <!-- Retícula arquitectónica de 1px -->
+  <line x1='64' y1='0' x2='64' y2='128' stroke='#ffffff' stroke-opacity='0.12' stroke-width='1'/>
+  <line x1='0' y1='64' x2='128' y2='64' stroke='#ffffff' stroke-opacity='0.12' stroke-width='1'/>
+  <line x1='28' y1='0' x2='28' y2='128' stroke='#ffffff' stroke-opacity='0.07' stroke-width='1' stroke-dasharray='2,2'/>
+  <line x1='100' y1='0' x2='100' y2='128' stroke='#ffffff' stroke-opacity='0.07' stroke-width='1' stroke-dasharray='2,2'/>
+
+  <!-- Marcas de registro técnico (+) en las esquinas -->
+  <path d='M14 10 v8 M10 14 h8' stroke='#F4F4F0' stroke-opacity='0.35' stroke-width='1.5'/>
+  <path d='M114 10 v8 M110 14 h8' stroke='#F4F4F0' stroke-opacity='0.35' stroke-width='1.5'/>
+  <path d='M14 110 v8 M10 114 h8' stroke='#F4F4F0' stroke-opacity='0.35' stroke-width='1.5'/>
+  <path d='M114 110 v8 M110 114 h8' stroke='#F4F4F0' stroke-opacity='0.35' stroke-width='1.5'/>
+
+  <!-- Tapón del frasco alquímico -->
+  <rect x='42' y='14' width='44' height='13' rx='3' fill='url(#stopperGrad)' stroke='#1D1E22' stroke-width='1.5'/>
+  <rect x='46' y='16' width='36' height='2' fill='#ffffff' opacity='0.7'/>
+
+  <!-- Cuello de cristal oscuro -->
+  <rect x='51' y='27' width='26' height='11' fill='#25262C' stroke='rgba(255,255,255,0.22)' stroke-width='1'/>
+
+  <!-- Hombro y cuerpo del frasco en rojo carmesí #800028 -->
+  <rect x='26' y='38' width='76' height='76' rx='16' fill='url(#vialGrad)' stroke='#F4F4F0' stroke-opacity='0.25' stroke-width='1.5'/>
+
+  <!-- Reflejo de cristal curvo lateral -->
+  <path d='M34 46 v60' stroke='#ffffff' stroke-opacity='0.28' stroke-width='3' stroke-linecap='round'/>
+
+  <!-- Monograma monumental 'S' en blanco hueso puro (#F4F4F0) con trazo grueso y nítido -->
+  <path d='M80 54 H54 C48.5 54 44 58.5 44 64 C44 69.5 48.5 73.5 54 73.5 H74 C79.5 73.5 84 77.5 84 83 C84 88.5 79.5 93 74 93 H48' 
+        fill='none' 
+        stroke='#F4F4F0' 
+        stroke-width='9' 
+        stroke-linecap='square' 
+        stroke-linejoin='miter'/>
+  
+  <!-- Punto de registro carmesí / acento -->
+  <circle cx='85' cy='54' r='3.5' fill='#F4F4F0'/>
 </svg>
