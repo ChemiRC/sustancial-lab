@@ -1,6 +1,6 @@
 /**
  * SUSTANCIAL LAB — Single Source of Truth (CMS-Ready Data Layer)
- * Fase 1: Todos los textos, fichas técnicas, metadatos y rutas de activos
+ * Todos los textos, fichas técnicas, metadatos y rutas de activos
  * viven estrictamente desacoplados de la capa de presentación JSX.
  */
 
@@ -8,71 +8,78 @@ export const siteContent = {
   meta: {
     siteName: 'SUSTANCIAL',
     fullTitle: 'SUSTANCIAL LAB',
-    cyrillicTitle: 'САБСТЭНШАЛ ЛАБ',
     discipline: 'COLECTIVO & LABORATORIO DE HISTORIA DEL ARTE',
     catalogCode: 'SL—ARC // FASE 01',
     coordinates: '19°25′57″N 99°07′59″W',
-    city: 'CIUDAD DE MÉXICO // ARCHIVO TRANSNACIONAL',
+    city: 'CIUDAD DE MÉXICO // ARCHIVO INDEPENDIENTE',
     foundedYear: '2024',
-    editionLabel: 'EDICIÓN DIGITAL 01.2026',
+    editionLabel: 'EDICIÓN DIGITAL 2026',
     statusLabel: 'LABORATORIO ACTIVO',
   },
 
   navigation: {
     brandShort: 'SUSTANCIAL',
-    brandSub: 'САБСТЭНШАЛ ЛАБ',
+    brandSub: 'LABORATORIO DE HISTORIA DEL ARTE',
+    homeLabel: 'INICIO',
+    backToHomeLabel: 'VOLVER AL INICIO',
+    selectSectionLabel: 'SELECCIONAR SECCIÓN',
+    indexDrawerTitle: 'ÍNDICE GENERAL DEL LABORATORIO',
     mobileMenuOpenLabel: '[ABRIR ÍNDICE]',
     mobileMenuCloseLabel: '[CERRAR]',
-    statusTag: 'LAB // ONLINE',
+    statusTag: 'LAB // ACTIVO',
     items: [
       {
         index: '01',
+        id: 'manifiesto',
         label: '[01. MANIFIESTO]',
         shortLabel: 'MANIFIESTO',
-        href: '#manifiesto',
-        sectionId: 'manifiesto',
+        title: 'Manifiesto y Declaración Crítica',
+        description: 'Tesis fundacional, ejes metodológicos de investigación y posicionamiento ante la imagen.',
       },
       {
         index: '02',
+        id: 'exposiciones',
         label: '[02. EXPOSICIONES]',
         shortLabel: 'EXPOSICIONES',
-        href: '#exposiciones',
-        sectionId: 'exposiciones',
+        title: 'Directorio Curatorial de Exposiciones',
+        description: 'Índice de montajes independientes, fichas técnicas, registros fotográficos y archivo documental.',
       },
       {
         index: '03',
+        id: 'entrevistas',
         label: '[03. ENTREVISTAS]',
         shortLabel: 'ENTREVISTAS',
-        href: '#entrevistas',
-        sectionId: 'entrevistas',
+        title: 'Diálogos en Taller con Artistas',
+        description: 'Conversaciones críticas y de largo aliento con creadores, grabadores e investigadores de la escena viva.',
       },
       {
         index: '04',
+        id: 'ensayos',
         label: '[04. ENSAYOS]',
         shortLabel: 'ENSAYOS',
-        href: '#ensayos',
-        sectionId: 'ensayos',
+        title: 'Cuadernos de Investigación Historiográfica',
+        description: 'Textos críticos, genealogías materiales del color y análisis de contra-archivos visuales.',
       },
     ],
   },
 
   hero: {
     wordmark: 'SUSTANCIAL',
-    cyrillicSubtitle: 'САБСТЭНШАЛ ЛАБ',
-    technicalKicker: '[ÍNDICE CURATORIAL & LABORATORIO HISTORIOGRÁFICO]',
+    categorySubtitle: 'COLECTIVO & LABORATORIO DE HISTORIA DEL ARTE',
+    technicalKicker: '[ÍNDICE CURATORIAL & ARCHIVO HISTORIOGRÁFICO]',
     tagline:
       'Investigación visual, curaduría de subsuelo y desmontaje crítico de la imagen desde la materialidad histórica.',
     primaryCta: {
-      label: 'EXPLORAR MANIFIESTO',
+      label: 'LEER MANIFIESTO',
       index: '01',
-      href: '#manifiesto',
+      targetScreen: 'manifiesto',
     },
     secondaryCta: {
       label: 'DIRECTORIO DE EXPOSICIONES',
       index: '02',
-      href: '#exposiciones',
+      targetScreen: 'exposiciones',
     },
-    layerControlsLabel: 'CAPA GRÁFICA:',
+    layerControlsLabel: 'CAPA VISUAL:',
     layers: [
       {
         id: 'engraving',
@@ -86,31 +93,32 @@ export const siteContent = {
         id: 'typography',
         code: '[FIG. 02]',
         label: 'RETÍCULA PURA',
-        caption: 'CONSTRUCCIÓN TIPOGRÁFICA // EJES DE CAPTURA Y LÍNEA BASE',
+        caption: 'CONSTRUCCIÓN TIPOGRÁFICA // RETÍCULA EXPUESTA',
         image: null,
         alt: 'Construcción tipográfica pura Sustancial Lab',
       },
       {
         id: 'collective',
         code: '[FIG. 03]',
-        label: 'ARCHIVO B&N',
+        label: 'ARCHIVO FOTOGRÁFICO',
         caption: 'REGISTRO ANALÓGICO 35MM // COLECTIVO SUSTANCIAL LAB',
         image: '/assets/brand/collective-portrait.jpg',
         alt: 'Retrato en blanco y negro de alto contraste del colectivo Sustancial Lab',
       },
     ],
     specs: [
-      { key: 'CLASIFICACIÓN', value: 'HISTORIA DEL ARTE / CRÍTICA' },
+      { key: 'DISCIPLINA', value: 'HISTORIA DEL ARTE / CRÍTICA' },
       { key: 'FORMATO', value: 'EXPOSICIONES · ENSAYO · ARCHIVO' },
-      { key: 'SISTEMA', value: 'САБСТЭНШАЛ // RETÍCULA 1PX' },
-      { key: 'COORDENADAS', value: '19.4326° N, -99.1332° W' },
+      { key: 'ESTRUCTURA', value: 'CUADRÍCULA ARQUITECTÓNICA 1PX' },
+      { key: 'SEDE CENTRAL', value: 'CIUDAD DE MÉXICO // INDEPENDIENTE' },
     ],
   },
 
   manifesto: {
     index: '01',
+    id: 'manifiesto',
     headerTag: '[01. MANIFIESTO]',
-    cyrillicTag: 'МАНИФЕСТ // ТЕОРИЯ И ПРАКТИКА',
+    categoryTag: 'TEORÍA Y PRÁCTICA CURATORIAL',
     title: 'CONTRA LA HISTORIA DEL ARTE ANESTESIADA',
     lead:
       'No estudiamos objetos muertos en vitrinas neutrales: intervenimos la historia de las imágenes como una sustancia viva, conflictiva y políticamente cargada.',
@@ -137,7 +145,7 @@ export const siteContent = {
     collectivePhoto: {
       code: 'REGISTRO // COLECTIVO SL-04',
       caption: 'NÚCLEO EDITORIAL Y CURATORIAL DE SUSTANCIAL LAB — REGISTRO EN PLATA / 35MM.',
-      location: 'PASILLO DE MONTAJE // ARCHIVO CENTRAL',
+      location: 'ESPACIO DE MONTAJE // ARCHIVO CENTRAL',
       image: '/assets/brand/collective-portrait.jpg',
       alt: 'Integrantes del colectivo Sustancial Lab en fotografía blanco y negro de alto contraste',
     },
@@ -165,11 +173,12 @@ export const siteContent = {
 
   exhibitions: {
     index: '02',
+    id: 'exposiciones',
     headerTag: '[02. EXPOSICIONES]',
-    cyrillicTag: 'ВЫСТАВОЧНЫЙ АРХИВ // CURATORIAL INDEX',
+    categoryTag: 'ÍNDICE DE EXPOSICIONES & MONTAJES',
     title: 'DIRECTORIO DE EXPOSICIONES',
     subtitle:
-      'Índice curatorial de montajes, intervenciones de archivo y dispositivos espaciales activados por el laboratorio. Selecciona o recorre cada registro para inspeccionar su ficha técnica, documentación fotográfica y módulo audiovisual.',
+      'Índice curatorial de montajes, intervenciones de archivo y dispositivos espaciales activados por el colectivo. Selecciona cualquier exposición para examinar su ficha técnica, documentación fotográfica y módulo audiovisual.',
     labels: {
       indexColumn: 'CATÁLOGO // PROYECTO',
       venueColumn: 'SEDE & AÑO',
@@ -182,8 +191,8 @@ export const siteContent = {
       venueLabel: 'ESPACIO / SEDE',
       coordinatesLabel: 'COORDENADAS',
       formatLabel: 'TIPOLOGÍA',
-      videoActionLabel: 'ACTIVAR SEÑAL DE REEL DOCUMENTAL',
-      videoCloseLabel: 'DETENER PREVISUALIZACIÓN',
+      videoActionLabel: 'ACTIVAR REEL DOCUMENTAL',
+      videoCloseLabel: 'DETENER REEL',
       zoomHint: '[CLIC PARA AMPLIAR LÁMINA]',
     },
     items: [
@@ -230,9 +239,9 @@ export const siteContent = {
         video: {
           code: 'VID // SL-DOC-01',
           duration: '04:38',
-          resolution: '1080P · 24FPS · B&N / CARMESÍ',
+          resolution: '1080P · B&N / CARMESÍ',
           title: 'RECORRIDO DE MONTAJE & LECTURA DE SALA — BUCARELI',
-          note: 'Espacio reservado para stream documental (HLS / MP4) en conexión con el repositorio audiovisual de Fase 2.',
+          note: 'Registro de sala y activación del archivo durante la inauguración.',
           poster: '/assets/exhibitions/exh-materia-1.jpg',
           videoUrl: null,
         },
@@ -279,9 +288,9 @@ export const siteContent = {
         video: {
           code: 'VID // SL-DOC-02',
           duration: '06:12',
-          resolution: '4K ARCHIVAL MASTER · ESTÉREO',
-          title: 'REGISTRO SONORO Y ESPACIAL — EX-TALLER SANTA MARÍA',
-          note: 'Módulo preparado para reproducción embebida del ensayo audiovisual de sala.',
+          resolution: '4K ARCHIVAL MASTER',
+          title: 'REGISTRO ESPACIAL — EX-TALLER SANTA MARÍA',
+          note: 'Módulo documental del recorrido audiovisual por la nave industrial.',
           poster: '/assets/exhibitions/exh-iconoclasia-1.jpg',
           videoUrl: null,
         },
@@ -298,7 +307,7 @@ export const siteContent = {
         curatorship: 'Mesa Historiográfica Sustancial',
         format: 'GABINETE DE GRABADO, HERBARIO CRÍTICO & PUBLICACIÓN',
         synopsis:
-          'A partir de láminas ornitológicas y tratados coloniales de historia natural, la exposición desmontó la mirada extractiva de las expediciones científicas oponiéndole prácticas contemporáneas de grabado insurgente.',
+          'A partir de láminas ornitológicas y tratados históricos de historia natural, la exposición desmontó la mirada extractiva de las expediciones científicas oponiéndole prácticas contemporáneas de grabado.',
         artists: [
           'Camila R. Villaurrutia',
           'Sebastián Orozco',
@@ -321,16 +330,16 @@ export const siteContent = {
           {
             id: 'g-03-c',
             code: 'LÁMINA 03.C',
-            caption: 'Núcleo curatorial durante las jornadas nocturnas de montaje.',
+            caption: 'Núcleo curatorial durante las jornadas de montaje en sala.',
             src: '/assets/brand/collective-portrait.jpg',
           },
         ],
         video: {
           code: 'VID // SL-DOC-03',
           duration: '03:54',
-          resolution: '16MM TRANSFER DIGITAL · MONO',
+          resolution: 'REGISTRO DIGITAL HD',
           title: 'CONVERSATORIO INAUGURAL & ACTIVACIÓN DE PLACAS',
-          note: 'Canal de video listo para vinculación directa con CMS en Fase 2.',
+          note: 'Diálogo abierto en torno a la iconografía naturalista.',
           poster: '/assets/exhibitions/exh-materia-2.jpg',
           videoUrl: null,
         },
@@ -364,8 +373,8 @@ export const siteContent = {
           {
             id: 'g-04-b',
             code: 'LÁMINA 04.B',
-            caption: 'Gráfica en cirílico САБСТЭНШАЛ ЛАБ sobre retícula constructiva expuesta.',
-            src: '/assets/brand/poster-cyrillic.jpg',
+            caption: 'Composición tipográfica monumental sobre retícula constructiva expuesta.',
+            src: '/assets/brand/poster-wordmark.jpg',
           },
           {
             id: 'g-04-c',
@@ -377,9 +386,9 @@ export const siteContent = {
         video: {
           code: 'VID // SL-DOC-04',
           duration: '05:19',
-          resolution: 'SUPER-8 / HD ARCHIVE SCAN',
-          title: 'MANIFIESTO EN VOZ ALTA — APERTURA SÓTANO DOCTORES',
-          note: 'Archivo matriz digitalizado listo para streaming en el portal expandido.',
+          resolution: 'REGISTRO DE ARCHIVO',
+          title: 'LECTURA DE MANIFIESTO — APERTURA SÓTANO DOCTORES',
+          note: 'Archivo fundacional digitalizado del colectivo.',
           poster: '/assets/exhibitions/exh-cartografias-1.jpg',
           videoUrl: null,
         },
@@ -387,162 +396,156 @@ export const siteContent = {
     ],
   },
 
-  editorial: {
-    previewBadge: 'VISTA PREVIA FASE 01 // PORTAL COMPLETO EN FASE 02',
-    readPreviewLabel: 'ABRIR AVANCE DE ARCHIVO',
-    closePreviewLabel: '[CERRAR FICHA]',
-    phase2Notice:
-      'Este registro forma parte del índice anticipado de Sustancial Lab. En la Fase 2 del portal se habilitarán las rutas dinámicas (/entrevistas/:slug y /ensayos/:slug), notas al pie interactivas y descarga en PDF maquetado.',
+  interviews: {
+    index: '03',
+    id: 'entrevistas',
+    headerTag: '[03. ENTREVISTAS]',
+    categoryTag: 'DIÁLOGOS CRÍTICOS EN TALLER',
+    title: 'ENTREVISTAS & DIÁLOGOS',
+    subtitle:
+      'Conversaciones con artistas visuales, archiveros independientes, grabadores e historiadores del arte que operan desde la experimentación.',
+    readPreviewLabel: 'LEER DIÁLOGO',
+    closePreviewLabel: '[CERRAR]',
+    items: [
+      {
+        id: 'int-01',
+        slug: 'valeria-mondragon-matriz-y-cicatriz',
+        code: 'ENT // 01',
+        category: 'ENTREVISTA',
+        date: 'OCTUBRE 2026',
+        readingTime: '11 MIN LECTURA',
+        subject: 'VALERIA MONDRAGÓN',
+        role: 'GRABADORA & INVESTIGADORA VISUAL',
+        author: 'Por Mesa Editorial Sustancial',
+        title: '«La plancha de metal guarda memoria física de cada golpe, igual que un edificio ocupado»',
+        excerpt:
+          'Visitamos su taller en el centro histórico para discutir la técnica como resistencia estética, el uso del rojo carmesí y la vigencia de los archivos gráficos.',
+        extendedPreview:
+          'Durante varias horas entre prensas calcográficas y ácidos de mordida lenta, Mondragón desarma la distancia entre oficio tradicional y pensamiento contemporáneo. La conversación recorre sus recientes intervenciones en bóvedas subterráneas y la necesidad de construir archivos autónomos.',
+        tags: ['GRABADO', 'MATERIALIDAD', 'TALLER'],
+        image: '/assets/exhibitions/exh-materia-2.jpg',
+      },
+      {
+        id: 'int-02',
+        slug: 'daria-sokolova-brutalismo-y-senal',
+        code: 'ENT // 02',
+        category: 'ENTREVISTA',
+        date: 'SEPTIEMBRE 2026',
+        readingTime: '14 MIN LECTURA',
+        subject: 'DARIA SOKOLOVA',
+        role: 'ARTISTA VISUAL & TEÓRICA DEL ESPACIO',
+        author: 'Por Núcleo Curatorial SL',
+        title: '«En el diseño de vanguardia persiste una gramática oculta entre el concreto y la tipografía»',
+        excerpt:
+          'Un diálogo sobre arquitectura brutalista, monitores de tubo catódico, carteles callejeros y afinidades estéticas subterráneas.',
+        extendedPreview:
+          'Sokolova analiza cómo las retículas del diseño moderno del siglo XX reaparecen transformadas en las publicaciones independientes latinoamericanas. Una conversación clave sobre la retícula constructiva y el espacio público.',
+        tags: ['ARQUITECTURA', 'BRUTALISMO', 'MEDIA ART'],
+        image: '/assets/exhibitions/exh-iconoclasia-1.jpg',
+      },
+      {
+        id: 'int-03',
+        slug: 'tomas-ibarra-rios-contra-el-cubo-blanco',
+        code: 'ENT // 03',
+        category: 'ENTREVISTA',
+        date: 'AGOSTO 2026',
+        readingTime: '09 MIN LECTURA',
+        subject: 'TOMÁS IBARRA-RÍOS',
+        role: 'CURADOR INDEPENDIENTE & EDITOR',
+        author: 'Por Colectivo Sustancial Lab',
+        title: '«Montar una exposición en un sótano obliga a repensar toda la experiencia museográfica»',
+        excerpt:
+          'Sobre autonomía curatorial, procesos autogestionados y el papel de los espacios independientes en la historiografía contemporánea.',
+        extendedPreview:
+          'Frente a los formatos comerciales uniformes, Ibarra-Ríos defiende la escala del laboratorio independiente: rigor conceptual, publicaciones impresas y montajes que dialogan con la arquitectura viva de los espacios.',
+        tags: ['CURADURÍA', 'AUTOGESTIÓN', 'ESPACIO'],
+        image: '/assets/exhibitions/exh-materia-1.jpg',
+      },
+    ],
+  },
 
-    interviewsSection: {
-      index: '03',
-      id: 'entrevistas',
-      headerTag: '[03. ENTREVISTAS]',
-      cyrillicTag: 'ИНТЕРВЬЮ // DIÁLOGOS EN TALLER',
-      title: 'ENTREVISTAS & DIÁLOGOS CRÍTICOS',
-      subtitle:
-        'Conversaciones sin filtro con artistas visuales, archiveros independientes, grabadores e historiadores que operan fuera de los circuitos complacientes.',
-      items: [
-        {
-          id: 'int-01',
-          slug: 'valeria-mondragon-matriz-y-cicatriz',
-          code: 'ENT // 01',
-          category: 'ENTREVISTA',
-          date: 'OCT 2026',
-          readingTime: '11 MIN LECTURA',
-          subject: 'VALERIA MONDRAGÓN',
-          role: 'GRABADORA & ARQUEÓLOGA VISUAL',
-          author: 'Por Mesa Editorial Sustancial',
-          title: '«La plancha de metal guarda memoria física de cada golpe, igual que un edificio ocupado»',
-          excerpt:
-            'Visitamos su taller en el centro histórico para discutir la obsolescencia técnica como resistencia estética, el uso político del rojo carmesí y la vida póstuma de los archivos sindicales.',
-          extendedPreview:
-            'Durante más de tres horas entre prensas calcográficas del siglo XIX y ácidos de mordida lenta, Mondragón desarma la falsa dicotomía entre oficio tradicional y pensamiento contemporáneo. La conversación recorre sus recientes intervenciones en bóvedas subterráneas y la urgencia de construir archivos autónomos frente a la amnesia institucional.',
-          tags: ['GRABADO', 'MATERIALIDAD', 'TALLER'],
-          image: '/assets/exhibitions/exh-materia-2.jpg',
-        },
-        {
-          id: 'int-02',
-          slug: 'daria-sokolova-brutalismo-y-senal',
-          code: 'ENT // 02',
-          category: 'ENTREVISTA',
-          date: 'SEP 2026',
-          readingTime: '14 MIN LECTURA',
-          subject: 'DARIA SOKOLOVA',
-          role: 'ARTISTA DE MEDIOS & TEÓRICA DEL ESPACIO',
-          author: 'Por Núcleo Curatorial SL',
-          title: '«Entre Moscú y Ciudad de México persiste una gramática secreta del concreto y la tipografía»',
-          excerpt:
-            'Un diálogo sobre constructivismo tardío, pantallas de rayos catódicos, carteles callejeros y las afinidades subterráneas entre vanguardias periféricas.',
-          extendedPreview:
-            'Sokolova analiza cómo las retículas constructivas del diseño soviético de los años veinte reaparecen mutadas en las publicaciones independientes latinoamericanas. Una entrevista clave para comprender el cruce estético que también atraviesa la identidad gráfica de Sustancial Lab.',
-          tags: ['CONSTRUCTIVISMO', 'ARQUITECTURA', 'MEDIA ART'],
-          image: '/assets/exhibitions/exh-iconoclasia-1.jpg',
-        },
-        {
-          id: 'int-03',
-          slug: 'tomas-ibarra-rios-contra-el-cubo-blanco',
-          code: 'ENT // 03',
-          category: 'ENTREVISTA',
-          date: 'AGO 2026',
-          readingTime: '09 MIN LECTURA',
-          subject: 'TOMÁS IBARRA-RÍOS',
-          role: 'CURADOR INDEPENDIENTE & EDITOR',
-          author: 'Por Colectivo Sustancial Lab',
-          title: '«Montar una exposición en un sótano húmedo obliga a repensar toda la conservación moderna»',
-          excerpt:
-            'Sobre precariedad productiva, autonomía curatorial y por qué los espacios autogestionados están reescribiendo la historiografía reciente.',
-          extendedPreview:
-            'Frente a la homogeneización ferial, Ibarra-Ríos defiende la escala táctica del laboratorio independiente: presupuestos austeros compensados con rigor conceptual extremo, publicaciones en risografía y montajes que dialogan con la pátina real del inmueble.',
-          tags: ['CURADURÍA', 'AUTOGESTIÓN', 'ESPACIO'],
-          image: '/assets/exhibitions/exh-materia-1.jpg',
-        },
-      ],
-    },
-
-    essaysSection: {
-      index: '04',
-      id: 'ensayos',
-      headerTag: '[04. ENSAYOS]',
-      cyrillicTag: 'ЭССЕ // CRÍTICA HISTORIOGRÁFICA',
-      title: 'ENSAYOS & CUADERNOS DE INVESTIGACIÓN',
-      subtitle:
-        'Textos críticos de largo aliento donde la Historia del Arte se cruza con la teoría de medios, la semiótica política del color y la genealogía de las exposiciones.',
-      items: [
-        {
-          id: 'ess-01',
-          slug: 'genealogia-del-carmesi-pigmento-poder-subversion',
-          code: 'ENS // 01',
-          category: 'ENSAYO CRÍTICO',
-          date: 'OCT 2026',
-          readingTime: '18 MIN LECTURA',
-          subject: 'CUADERNO #04',
-          role: 'HISTORIA MATERIAL DEL COLOR',
-          author: 'Colectivo Sustancial Lab',
-          title: 'Genealogía del carmesí: de la grana cochinilla novohispana a la tinta insurgente',
-          excerpt:
-            'Un recorrido historiográfico por la economía política del rojo profundo (#800028): tributo colonial, ostentación litúrgica y reapropiación gráfica en los impresos radicales del siglo XX.',
-          extendedPreview:
-            'Ningún pigmento condensa mejor la historia atlántica del extractivismo y la representación que el carmesí de cochinilla. Este ensayo rastrea su tránsito desde los códices tributarios hasta las tintas de cartelismo subterráneo contemporáneo, proponiendo una lectura cromática del poder.',
-          tags: ['PIGMENTOS', 'HISTORIOGRAFÍA', 'ECONOMÍA VISUAL'],
-          image: '/assets/brand/vial-print.jpg',
-        },
-        {
-          id: 'ess-02',
-          slug: 'la-cuadricula-expuesta-como-dispositivo-critico',
-          code: 'ENS // 02',
-          category: 'ENSAYO TEÓRICO',
-          date: 'SEP 2026',
-          readingTime: '15 MIN LECTURA',
-          subject: 'CUADERNO #03',
-          role: 'TEORÍA DEL DISEÑO & MONTAJE',
-          author: 'Mesa Teórica Sustancial',
-          title: 'La cuadrícula expuesta: contra la transparencia ideológica del diseño moderno',
-          excerpt:
-            'Desde Rosalind Krauss hasta el brutalismo editorial contemporáneo, examinamos qué ocurre cuando la estructura constructiva deja de ocultarse bajo la superficie.',
-          extendedPreview:
-            'Cuando el diseño suizo ocultó sus líneas guía tras la página impresa, naturalizó un orden racionalista como si fuera espontáneo. Dejar visibles las líneas de 1px sobre el carbón oscuro invierte esa operación: revela el andamiaje, la medida y la tensión material de cada fragmento.',
-          tags: ['RETÍCULA', 'BRUTALISMO', 'TEORÍA DEL ARTE'],
-          image: '/assets/brand/poster-wordmark.jpg',
-        },
-        {
-          id: 'ess-03',
-          slug: 'ornitologia-de-archivo-grabado-y-mirada-imperial',
-          code: 'ENS // 03',
-          category: 'ENSAYO VISUAL',
-          date: 'JUL 2026',
-          readingTime: '16 MIN LECTURA',
-          subject: 'CUADERNO #02',
-          role: 'ICONOGRAFÍA & CONTRA-ARCHIVO',
-          author: 'Núcleo de Investigación SL',
-          title: 'Anatomía de un vuelo disecado: el grabado naturalista frente a su descolonización visual',
-          excerpt:
-            'Cómo las aves americanas fueron aisladas sobre fondos blancos para el inventario imperial, y qué significa devolverlas hoy a la penumbra crítica del laboratorio.',
-          extendedPreview:
-            'El fondo blanco de las láminas ilustradas del siglo XVIII operaba como una violencia epistemológica: arrancaba al espécimen de su ecosistema y de sus cosmologías locales. Superponer el grabado ornitológico sobre nuestra retícula nocturna propone una relectura de esa captura.',
-          tags: ['ICONOGRAFÍA', 'HISTORIA NATURAL', 'ARCHIVO'],
-          image: '/assets/brand/poster-hummingbird.jpg',
-        },
-      ],
-    },
+  essays: {
+    index: '04',
+    id: 'ensayos',
+    headerTag: '[04. ENSAYOS]',
+    categoryTag: 'INVESTIGACIÓN HISTORIOGRÁFICA',
+    title: 'ENSAYOS & INVESTIGACIÓN',
+    subtitle:
+      'Textos críticos donde la Historia del Arte se cruza con la teoría visual, la semiótica material del color y la genealogía de las exposiciones.',
+    readPreviewLabel: 'LEER ENSAYO',
+    closePreviewLabel: '[CERRAR]',
+    items: [
+      {
+        id: 'ess-01',
+        slug: 'genealogia-del-carmesi-pigmento-poder-subversion',
+        code: 'ENS // 01',
+        category: 'ENSAYO CRÍTICO',
+        date: 'OCTUBRE 2026',
+        readingTime: '18 MIN LECTURA',
+        subject: 'CUADERNO DE INVESTIGACIÓN #04',
+        role: 'HISTORIA MATERIAL DEL COLOR',
+        author: 'Colectivo Sustancial Lab',
+        title: 'Genealogía del carmesí: de la grana cochinilla a la tinta del cartel subterráneo',
+        excerpt:
+          'Un recorrido por la economía material y política del rojo profundo (#800028): comercio histórico, simbolismo visual y reapropiación gráfica.',
+        extendedPreview:
+          'Ningún pigmento condensa mejor la historia de la materialidad y la representación que el carmesí. Este texto rastrea su tránsito histórico desde los códices hasta las tintas de impresión independiente, proponiendo una lectura crítica del color.',
+        tags: ['PIGMENTOS', 'HISTORIOGRAFÍA', 'COLOR'],
+        image: '/assets/brand/vial-print.jpg',
+      },
+      {
+        id: 'ess-02',
+        slug: 'la-cuadricula-expuesta-como-dispositivo-critico',
+        code: 'ENS // 02',
+        category: 'ENSAYO TEÓRICO',
+        date: 'SEPTIEMBRE 2026',
+        readingTime: '15 MIN LECTURA',
+        subject: 'CUADERNO DE INVESTIGACIÓN #03',
+        role: 'TEORÍA DEL DISEÑO & ESPACIO',
+        author: 'Mesa Teórica Sustancial',
+        title: 'La cuadrícula expuesta: contra la neutralidad simulada del diseño moderno',
+        excerpt:
+          'Qué ocurre cuando la estructura constructiva deja de esconderse y revela sus líneas maestras sobre el fondo oscuro.',
+        extendedPreview:
+          'Cuando el diseño tradicional ocultó sus líneas guía, presentó un orden visual como si fuese natural y espontáneo. Mostrar las líneas finas de 1px invierte esa convención: expone el andamiaje, la proporción y el proceso.',
+        tags: ['RETÍCULA', 'BRUTALISMO', 'TEORÍA'],
+        image: '/assets/brand/poster-wordmark.jpg',
+      },
+      {
+        id: 'ess-03',
+        slug: 'ornitologia-de-archivo-grabado-y-mirada-imperial',
+        code: 'ENS // 03',
+        category: 'ENSAYO VISUAL',
+        date: 'JULIO 2026',
+        readingTime: '16 MIN LECTURA',
+        subject: 'CUADERNO DE INVESTIGACIÓN #02',
+        role: 'ICONOGRAFÍA & ARCHIVO',
+        author: 'Núcleo de Investigación SL',
+        title: 'Anatomía de un vuelo registrado: el grabado naturalista ante la mirada crítica contemporánea',
+        excerpt:
+          'Cómo las láminas ilustradas de historia natural aislaron los especímenes, y qué significa reubicarlos hoy en el espacio del laboratorio.',
+        extendedPreview:
+          'El fondo blanco de las láminas científicas del siglo XVIII aislaba al espécimen de su contexto. Superponer el grabado sobre la retícula constructiva contemporánea propone una nueva lectura sobre el registro y la memoria.',
+        tags: ['ICONOGRAFÍA', 'HISTORIA NATURAL', 'ARCHIVO'],
+        image: '/assets/brand/poster-hummingbird.jpg',
+      },
+    ],
   },
 
   footer: {
     wordmark: 'SUSTANCIAL',
-    cyrillicMark: 'САБСТЭНШАЛ ЛАБ',
     statement:
       'Colectivo independiente y laboratorio de Historia del Arte dedicado a la investigación curatorial, la edición crítica y la activación de archivos visuales.',
-    contactTitle: 'CONTACTO & PROPUESTAS CURATORIALES',
-    email: 'archivo@sustanciallab.org',
-    location: 'CIUDAD DE MÉXICO // LAT. 19.4326° N · LON. -99.1332° W',
-    socialsTitle: 'CANALES DE DIFUSIÓN',
+    contactTitle: 'CONTACTO & COLABORACIONES',
+    email: 'contacto@sustanciallab.org',
+    location: 'CIUDAD DE MÉXICO // ARCHIVO INDEPENDIENTE',
+    socialsTitle: 'CANALES',
     socials: [
-      { label: 'INSTAGRAM // @SUSTANCIALLAB', href: '#top' },
-      { label: 'ARE.NA // ARCHIVO ABIERTO', href: '#exposiciones' },
-      { label: 'BOLETÍN // CUADERNOS CRÍTICOS', href: '#ensayos' },
+      { label: 'INSTAGRAM // @SUSTANCIALLAB', href: '#inicio' },
+      { label: 'ARCHIVO DIGITAL // ARE.NA', href: '#exposiciones' },
+      { label: 'BOLETÍN EDITORIAL', href: '#ensayos' },
     ],
-    architectureNote: 'ARQUITECTURA MODULAR FASE 01 — PREPARADA PARA INTEGRACIÓN HEADLESS CMS (FASE 02)',
-    copyright: '© 2026 SUSTANCIAL LAB (САБСТЭНШАЛ ЛАБ). TODOS LOS DERECHOS DE EDICIÓN Y CURADURÍA RESERVADOS.',
-    backToTopLabel: '[↑ VOLVER AL ORIGEN]',
+    copyright: '© 2026 SUSTANCIAL LAB. COLECTIVO Y LABORATORIO DE HISTORIA DEL ARTE. TODOS LOS DERECHOS RESERVADOS.',
+    backToTopLabel: '[↑ VOLVER AL INICIO]',
   },
 };

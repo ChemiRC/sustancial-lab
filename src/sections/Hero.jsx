@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Layers } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Compass, Layers } from 'lucide-react';
 import { EditorialButton } from '../components/ui/EditorialButton';
 import { TechTag } from '../components/ui/TechTag';
 
 /**
- * Hero Monumental de Sustancial Lab:
- * Replica la geometría constructiva exacta de los carteles de la marca:
- * dobles líneas horizontales de 1px que enmarcan la altura de mayúscula y línea base
- * de SUSTANCIAL (#800028), cruzadas por ejes verticales y superposición interactiva
- * de grabado en blanco y negro o fotografía analógica de alto contraste.
+ * Hero Monumental & Directorio Rector de Sustancial Lab (Pantalla de Inicio):
+ * Replica la geometría constructiva exacta de los carteles de la marca,
+ * con tipografía monumental SUSTANCIAL (#800028), el grabado ornitológico
+ * y el Directorio de Acceso Directo a las 4 pantallas del laboratorio.
  */
-export function Hero({ hero, meta }) {
+export function Hero({ hero, meta, navigation, onNavigate }) {
   const [activeLayerId, setActiveLayerId] = useState(hero.layers[0].id);
   const [pointerOffset, setPointerOffset] = useState({ x: 0, y: 0 });
 
@@ -23,8 +22,8 @@ export function Hero({ hero, meta }) {
     const normX = (event.clientX - rect.left) / rect.width - 0.5;
     const normY = (event.clientY - rect.top) / rect.height - 0.5;
     setPointerOffset({
-      x: normX * 18,
-      y: normY * 14,
+      x: normX * 16,
+      y: normY * 12,
     });
   };
 
@@ -33,40 +32,36 @@ export function Hero({ hero, meta }) {
   };
 
   return (
-    <section
-      id="top"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative pt-[60px] border-b border-white/15 editorial-grain overflow-hidden"
-    >
+    <div className="relative pt-[60px] editorial-grain overflow-hidden">
       <div className="mx-auto max-w-[1440px] border-x border-white/15">
         {/* Fila técnica superior de catalogación */}
         <div className="grid grid-cols-1 md:grid-cols-12 border-b border-white/15 bg-[#16171A]/75">
-          <div className="md:col-span-4 px-5 sm:px-8 lg:px-14 py-3 border-b md:border-b-0 md:border-r border-white/15 flex items-center justify-between">
+          <div className="md:col-span-5 px-5 sm:px-8 lg:px-12 py-3 border-b md:border-b-0 md:border-r border-white/15 flex items-center justify-between">
             <span className="font-mono text-[11px] tracking-[0.16em] text-[#F4F4F0]/70 uppercase">
               {meta.discipline}
             </span>
           </div>
 
           <div className="md:col-span-4 px-5 sm:px-8 py-3 border-b md:border-b-0 md:border-r border-white/15 flex items-center justify-between md:justify-center gap-3">
-            <span className="font-mono text-xs tracking-[0.24em] text-[#800028] font-bold">
-              {hero.cyrillicSubtitle}
-            </span>
-            <span className="font-mono text-[10px] tracking-[0.15em] text-[#F4F4F0]/40">
-              // {meta.editionLabel}
+            <span className="font-mono text-xs tracking-[0.18em] text-[#800028] font-bold uppercase">
+              {hero.categorySubtitle}
             </span>
           </div>
 
-          <div className="md:col-span-4 px-5 sm:px-8 lg:px-14 py-3 flex items-center justify-between md:justify-end gap-3">
+          <div className="md:col-span-3 px-5 sm:px-8 lg:px-12 py-3 flex items-center justify-between md:justify-end gap-3">
             <TechTag variant="default" dot>
               {meta.statusLabel}
             </TechTag>
           </div>
         </div>
 
-        {/* Lienzo central constructivo (inspirado en carteles oficiales) */}
-        <div className="relative py-10 sm:py-16 lg:py-20">
-          {/* Ejes verticales constructivos internos del cartel */}
+        {/* Lienzo central constructivo */}
+        <div
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          className="relative py-8 sm:py-14 lg:py-16"
+        >
+          {/* Ejes verticales constructivos internos */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-y-0 left-6 sm:left-10 lg:left-14 w-px bg-white/15"
@@ -81,8 +76,8 @@ export function Hero({ hero, meta }) {
           />
 
           {/* Selector técnico de capa superpuesta */}
-          <div className="relative z-30 px-6 sm:px-12 lg:px-32 mb-8 sm:mb-12 flex flex-wrap items-center justify-between gap-4">
-            <span className="font-mono text-[11px] tracking-[0.18em] text-[#F4F4F0]/60 uppercase">
+          <div className="relative z-30 px-6 sm:px-12 lg:px-32 mb-6 sm:mb-10 flex flex-wrap items-center justify-between gap-4">
+            <span className="font-mono text-[11px] tracking-[0.18em] text-[#F4F4F0]/65 uppercase">
               {hero.technicalKicker}
             </span>
 
@@ -113,11 +108,11 @@ export function Hero({ hero, meta }) {
 
           {/* Banda constructiva de doble línea horizontal + Título Monumental SUSTANCIAL */}
           <div className="relative">
-            {/* Línea constructiva superior #1 + franja técnica */}
-            <div className="h-7 sm:h-9 border-y border-white/15 px-6 sm:px-12 lg:px-32 flex items-center justify-between font-mono text-[10px] tracking-[0.18em] text-[#F4F4F0]/40 select-none">
-              <span>CAP-HEIGHT // Y:0.00</span>
+            {/* Línea constructiva superior */}
+            <div className="h-7 sm:h-8 border-y border-white/15 px-6 sm:px-12 lg:px-32 flex items-center justify-between font-mono text-[10px] tracking-[0.18em] text-[#F4F4F0]/40 select-none">
+              <span>RETÍCULA CONSTRUCTIVA</span>
               <span className="hidden sm:inline">{activeLayer.caption}</span>
-              <span>AXIS // +19.43</span>
+              <span>SL // ARCHIVO</span>
             </div>
 
             {/* Franja central: SUSTANCIAL encajado entre las líneas de cuadrícula */}
@@ -125,7 +120,7 @@ export function Hero({ hero, meta }) {
               <motion.h1
                 initial={{ opacity: 0, scale: 0.985 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="wordmark-monumental w-full text-center text-[#800028] select-none"
                 style={{
                   fontSize: 'clamp(3.9rem, 16.4vw, 15.2rem)',
@@ -134,12 +129,12 @@ export function Hero({ hero, meta }) {
                 {hero.wordmark}
               </motion.h1>
 
-              {/* Superposición gráfica (Grabado B&N de alto contraste o Fotografía Colectivo) */}
+              {/* Superposición gráfica */}
               <AnimatePresence mode="wait">
                 {activeLayer.id === 'engraving' && activeLayer.image && (
                   <motion.div
                     key="layer-engraving"
-                    initial={{ opacity: 0, scale: 0.92, y: 12 }}
+                    initial={{ opacity: 0, scale: 0.92 }}
                     animate={{
                       opacity: 1,
                       scale: 1,
@@ -185,7 +180,7 @@ export function Hero({ hero, meta }) {
                       <div className="pt-1.5 flex items-center justify-between font-mono text-[9px] tracking-[0.15em] text-[#F4F4F0]/70">
                         <span>SL // 35MM</span>
                         <span className="text-[#800028] font-bold">
-                          {hero.cyrillicSubtitle}
+                          COLECTIVO SUSTANCIAL
                         </span>
                       </div>
                     </div>
@@ -194,13 +189,13 @@ export function Hero({ hero, meta }) {
               </AnimatePresence>
             </div>
 
-            {/* Línea constructiva inferior #2 + subtítulo cirílico enmarcado */}
-            <div className="h-9 sm:h-11 border-y border-white/15 px-6 sm:px-12 lg:px-32 flex items-center justify-between font-mono text-[11px] tracking-[0.2em]">
+            {/* Línea constructiva inferior */}
+            <div className="h-8 sm:h-10 border-y border-white/15 px-6 sm:px-12 lg:px-32 flex items-center justify-between font-mono text-[11px] tracking-[0.18em]">
               <span className="text-[#F4F4F0]/40 text-[10px]">
-                BASELINE // Y:1.00
+                LABORATORIO DE INVESTIGACIÓN VISUAL
               </span>
-              <span className="text-[#800028] font-bold tracking-[0.28em]">
-                {hero.cyrillicSubtitle}
+              <span className="text-[#800028] font-bold tracking-[0.24em] text-xs">
+                HISTORIA DEL ARTE & CRÍTICA
               </span>
               <span className="text-[#F4F4F0]/40 text-[10px]">
                 {meta.catalogCode}
@@ -208,43 +203,91 @@ export function Hero({ hero, meta }) {
             </div>
           </div>
 
-          {/* Subtítulo editorial y acciones bajo la retícula central */}
-          <div className="relative z-30 mt-10 sm:mt-14 px-6 sm:px-12 lg:px-32 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.15 }}
-              className="lg:col-span-7 space-y-3"
-            >
+          {/* Subtítulo editorial y botones directos */}
+          <div className="relative z-30 mt-8 sm:mt-12 px-6 sm:px-12 lg:px-32 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+            <div className="lg:col-span-7 space-y-3">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#F4F4F0]/55">
                 {meta.city} — {meta.coordinates}
               </p>
-              <p className="font-serif text-xl sm:text-2xl lg:text-[26px] leading-snug text-[#F4F4F0]/90 max-w-2xl">
+              <p className="font-serif text-xl sm:text-2xl lg:text-[25px] leading-snug text-[#F4F4F0]/90 max-w-2xl">
                 {hero.tagline}
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.25 }}
-              className="lg:col-span-5 flex flex-col sm:flex-row lg:justify-end gap-3"
-            >
+            <div className="lg:col-span-5 flex flex-col sm:flex-row lg:justify-end gap-3">
               <EditorialButton
-                href={hero.primaryCta.href}
+                onClick={() => onNavigate(hero.primaryCta.targetScreen)}
                 index={hero.primaryCta.index}
                 variant="primary"
               >
                 {hero.primaryCta.label}
               </EditorialButton>
               <EditorialButton
-                href={hero.secondaryCta.href}
+                onClick={() => onNavigate(hero.secondaryCta.targetScreen)}
                 index={hero.secondaryCta.index}
                 variant="outline"
               >
                 {hero.secondaryCta.label}
               </EditorialButton>
-            </motion.div>
+            </div>
+          </div>
+        </div>
+
+        {/* =================================================================
+            DIRECTORIO RECTOR: LAS 4 PANTALLAS DEL ÍNDICE CON ACCESO DIRECTO
+           ================================================================= */}
+        <div className="border-t border-white/15 bg-[#16171A]">
+          <div className="px-6 sm:px-10 py-4 border-b border-white/15 flex flex-wrap items-center justify-between gap-3 bg-[#131417]">
+            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-[#800028] font-bold">
+              <Compass size={14} strokeWidth={1.5} />
+              <span>DIRECTORIO GENERAL // PANTALLAS DEL LABORATORIO</span>
+            </div>
+            <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#F4F4F0]/45">
+              SELECCIONA CUALQUIER SECCIÓN PARA NAVEGAR A SU PANTALLA
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/15">
+            {navigation.items.map((item, idx) => (
+              <div
+                key={item.id}
+                className={`p-6 sm:p-8 flex flex-col justify-between gap-6 hover:bg-white/[0.025] transition-colors ${
+                  idx >= 2 ? 'md:border-t border-white/15' : ''
+                }`}
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-sm font-bold text-[#800028] tracking-[0.2em]">
+                      [{item.index}]
+                    </span>
+                    <TechTag variant="default">PANTALLA</TechTag>
+                  </div>
+
+                  <h3 className="font-display text-2xl sm:text-3xl uppercase tracking-wide text-[#F4F4F0]">
+                    {item.title}
+                  </h3>
+
+                  <p className="font-serif text-sm sm:text-base leading-relaxed text-[#F4F4F0]/70">
+                    {item.description}
+                  </p>
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    type="button"
+                    onClick={() => onNavigate(item.id)}
+                    className="w-full sm:w-auto px-5 py-3 border border-white/20 hover:border-[#800028] bg-[#1D1E22] hover:bg-[#800028] text-[#F4F4F0] font-mono text-xs uppercase tracking-[0.16em] transition-colors flex items-center justify-between gap-4 cursor-pointer group"
+                  >
+                    <span>ENTRAR A {item.shortLabel}</span>
+                    <ArrowRight
+                      size={14}
+                      strokeWidth={1.5}
+                      className="transition-transform group-hover:translate-x-1"
+                    />
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -267,6 +310,6 @@ export function Hero({ hero, meta }) {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

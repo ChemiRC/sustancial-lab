@@ -1,28 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
+import { ScreenNav } from '../components/layout/ScreenNav';
 import { SectionHeader } from '../components/ui/SectionHeader';
 import { TechTag } from '../components/ui/TechTag';
 
 /**
- * Sección [01. MANIFIESTO]:
+ * Pantalla [01. MANIFIESTO]:
  * Diseño editorial asimétrico de dos columnas con bordes expuestos de 1px,
- * tipografía expresiva (Newsreader + Anton + Space Mono), espécimen gráfico
- * del frasco carmesí, fotografía B&N del colectivo y citas destacadas.
+ * tipografía expresiva, espécimen gráfico del frasco carmesí (recorte limpio),
+ * fotografía B&N del colectivo y barra de navegación de retorno/índice.
  */
-export function Manifesto({ manifesto }) {
+export function Manifesto({
+  manifesto,
+  onNavigate,
+  onOpenIndexDrawer,
+  navigation,
+}) {
   return (
-    <section
-      id="manifiesto"
-      className="relative z-20 border-b border-white/15 bg-[#1D1E22]"
-    >
+    <section className="relative z-20 bg-[#1D1E22]">
       <div className="mx-auto max-w-[1440px] border-x border-white/15">
         <SectionHeader
           index={manifesto.index}
           headerTag={manifesto.headerTag}
-          cyrillicTag={manifesto.cyrillicTag}
+          categoryTag={manifesto.categoryTag}
           title={manifesto.title}
-          countLabel="DOC // SL-MANIFESTO-01"
+          countLabel="DOCUMENTO // SL-M01"
         />
 
         {/* Cuerpo asimétrico de 2 columnas principales (5 / 7) */}
@@ -30,16 +33,16 @@ export function Manifesto({ manifesto }) {
           {/* Columna izquierda (5 cols): Espécimen alquímico + Ejes de investigación */}
           <aside className="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-white/15 flex flex-col justify-between">
             {/* Celda del frasco/vial xilográfico de marca */}
-            <div className="relative p-6 sm:p-10 border-b border-white/15 bg-[#16171A]/55 overflow-hidden">
+            <div className="relative p-6 sm:p-10 border-b border-white/15 bg-[#16171A]/55">
               <div className="flex items-center justify-between mb-6">
                 <TechTag variant="default">{manifesto.specimen.code}</TechTag>
-                <span className="font-mono text-[10px] tracking-[0.18em] text-[#F4F4F0]/40">
-                  FIG. B // #800028
+                <span className="font-mono text-[10px] tracking-[0.18em] text-[#800028] font-bold">
+                  COLOR // #800028
                 </span>
               </div>
 
-              {/* Guías cruzadas detrás del vial */}
-              <div className="relative py-6 flex items-center justify-center">
+              {/* Guías cruzadas detrás del vial con suficiente espacio vertical para que respire */}
+              <div className="relative py-10 sm:py-14 flex items-center justify-center min-h-[360px]">
                 <div
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-x-0 top-1/2 h-px bg-white/15"
@@ -50,14 +53,13 @@ export function Manifesto({ manifesto }) {
                 />
 
                 <motion.img
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                   src={manifesto.specimen.image}
                   alt={manifesto.specimen.alt}
-                  loading="lazy"
-                  className="relative z-10 w-44 sm:w-52 h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.65)] transition-transform duration-500 hover:scale-[1.03]"
+                  loading="eager"
+                  className="relative z-10 w-48 sm:w-56 lg:w-60 max-h-[420px] h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.65)] transition-transform duration-500 hover:scale-[1.03]"
                 />
               </div>
 
@@ -71,9 +73,9 @@ export function Manifesto({ manifesto }) {
               </div>
             </div>
 
-            {/* Nota metodológica secundaria */}
+            {/* Nota metodológica */}
             <div className="p-6 sm:p-8 border-b border-white/15 bg-[#1D1E22]">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#800028] mb-2.5">
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#800028] mb-2.5 font-bold">
                 {manifesto.secondaryQuote.code}
               </p>
               <blockquote className="font-serif italic text-lg leading-relaxed text-[#F4F4F0]/85">
@@ -104,17 +106,16 @@ export function Manifesto({ manifesto }) {
             </div>
           </aside>
 
-          {/* Columna derecha (7 cols): Tesis expresiva + Cita destacada + Registro B&N Colectivo */}
+          {/* Columna derecha (7 cols): Tesis + Cita destacada + Registro Colectivo */}
           <div className="lg:col-span-7 flex flex-col justify-between">
             {/* Declaración principal */}
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="p-6 sm:p-10 lg:p-12 border-b border-white/15 space-y-8"
             >
-              <p className="font-serif text-2xl sm:text-3xl lg:text-[34px] leading-[1.26] text-[#F4F4F0] font-normal">
+              <p className="font-serif text-2xl sm:text-3xl lg:text-[32px] leading-[1.28] text-[#F4F4F0] font-normal">
                 {manifesto.lead}
               </p>
 
@@ -130,14 +131,8 @@ export function Manifesto({ manifesto }) {
               </div>
             </motion.div>
 
-            {/* Cita destacada del colectivo con filete carmesí */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.55 }}
-              className="p-6 sm:p-10 lg:p-12 border-b border-white/15 bg-[#16171A]/80"
-            >
+            {/* Cita destacada con filete carmesí */}
+            <div className="p-6 sm:p-10 lg:p-12 border-b border-white/15 bg-[#16171A]/80">
               <div className="border-l-4 border-[#800028] pl-6 sm:pl-8 space-y-4">
                 <div className="flex items-center gap-2.5">
                   <Quote size={16} strokeWidth={1.5} className="text-[#800028]" />
@@ -146,7 +141,7 @@ export function Manifesto({ manifesto }) {
                   </span>
                 </div>
 
-                <blockquote className="font-serif italic text-xl sm:text-2xl lg:text-[27px] leading-snug text-[#F4F4F0]">
+                <blockquote className="font-serif italic text-xl sm:text-2xl lg:text-[26px] leading-snug text-[#F4F4F0]">
                   {manifesto.featuredQuote.text}
                 </blockquote>
 
@@ -154,9 +149,9 @@ export function Manifesto({ manifesto }) {
                   — {manifesto.featuredQuote.attribution}
                 </p>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Registro fotográfico B&N de alto contraste del colectivo */}
+            {/* Registro fotográfico B&N del colectivo */}
             <div className="p-6 sm:p-10 lg:p-12 bg-[#1D1E22]">
               <div className="border border-white/15 bg-[#16171A] overflow-hidden group">
                 <div className="px-4 py-2.5 border-b border-white/15 flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] tracking-[0.16em] text-[#F4F4F0]/60">
@@ -183,6 +178,14 @@ export function Manifesto({ manifesto }) {
           </div>
         </div>
       </div>
+
+      {/* Barra de navegación técnica para volver al inicio o seleccionar otra sección */}
+      <ScreenNav
+        currentScreen="manifiesto"
+        onNavigate={onNavigate}
+        onOpenIndexDrawer={onOpenIndexDrawer}
+        navigation={navigation}
+      />
     </section>
   );
 }

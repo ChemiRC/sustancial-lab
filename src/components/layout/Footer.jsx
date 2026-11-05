@@ -1,10 +1,10 @@
 import React from 'react';
-import { ArrowUpRight, Compass, Mail } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Compass, Mail } from 'lucide-react';
 
 /**
  * Colofón Técnico Brutalista (Footer) con celdas expuestas de 1px.
  */
-export function Footer({ footer, navigation, meta }) {
+export function Footer({ footer, navigation, meta, onNavigate }) {
   return (
     <footer className="relative z-20 border-t border-white/15 bg-[#16171A]">
       <div className="mx-auto max-w-[1440px] border-x border-white/15">
@@ -13,12 +13,16 @@ export function Footer({ footer, navigation, meta }) {
           {/* Bloque monumental de identidad */}
           <div className="lg:col-span-5 p-6 sm:p-10 lg:border-r border-white/15 flex flex-col justify-between gap-8">
             <div className="space-y-3">
-              <p className="font-mono text-xs tracking-[0.22em] text-[#800028] font-bold">
-                {footer.cyrillicMark} // {meta.catalogCode}
+              <p className="font-mono text-xs tracking-[0.2em] text-[#800028] font-bold uppercase">
+                {meta.discipline} // {meta.catalogCode}
               </p>
-              <div className="wordmark-monumental text-6xl sm:text-7xl text-[#800028] select-none">
+              <button
+                type="button"
+                onClick={() => onNavigate('inicio')}
+                className="wordmark-monumental text-left text-6xl sm:text-7xl text-[#800028] hover:text-white transition-colors select-none cursor-pointer"
+              >
                 {footer.wordmark}
-              </div>
+              </button>
             </div>
 
             <p className="font-serif text-base leading-relaxed text-[#F4F4F0]/70 max-w-md">
@@ -26,17 +30,32 @@ export function Footer({ footer, navigation, meta }) {
             </p>
           </div>
 
-          {/* Directorio interno */}
+          {/* Directorio de pantallas */}
           <div className="lg:col-span-3 p-6 sm:p-10 border-t lg:border-t-0 lg:border-r border-white/15 space-y-5">
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#F4F4F0]/45">
-              [ÍNDICE DE SECCIONES]
+              [PANTALLAS DEL ÍNDICE]
             </p>
             <ul className="space-y-3">
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('inicio')}
+                  className="group inline-flex items-center gap-2 font-mono text-xs tracking-[0.14em] text-[#F4F4F0]/80 hover:text-[#800028] transition-colors cursor-pointer"
+                >
+                  <span>[00. PORTADA / INICIO]</span>
+                  <ArrowUpRight
+                    size={13}
+                    strokeWidth={1.5}
+                    className="opacity-50 group-hover:opacity-100 transition-opacity"
+                  />
+                </button>
+              </li>
               {navigation.items.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="group inline-flex items-center gap-2 font-mono text-xs tracking-[0.14em] text-[#F4F4F0]/80 hover:text-[#800028] transition-colors"
+                <li key={item.id}>
+                  <button
+                    type="button"
+                    onClick={() => onNavigate(item.id)}
+                    className="group inline-flex items-center gap-2 font-mono text-xs tracking-[0.14em] text-[#F4F4F0]/80 hover:text-[#800028] transition-colors cursor-pointer"
                   >
                     <span>{item.label}</span>
                     <ArrowUpRight
@@ -44,7 +63,7 @@ export function Footer({ footer, navigation, meta }) {
                       strokeWidth={1.5}
                       className="opacity-50 group-hover:opacity-100 transition-opacity"
                     />
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -75,14 +94,12 @@ export function Footer({ footer, navigation, meta }) {
               </p>
               <div className="flex flex-col gap-2">
                 {footer.socials.map((social) => (
-                  <a
+                  <span
                     key={social.label}
-                    href={social.href}
-                    className="inline-flex items-center justify-between font-mono text-xs tracking-[0.12em] text-[#F4F4F0]/75 hover:text-[#F4F4F0] transition-colors"
+                    className="font-mono text-xs tracking-[0.12em] text-[#F4F4F0]/75"
                   >
-                    <span>{social.label}</span>
-                    <span className="text-[#800028]">↗</span>
-                  </a>
+                    {social.label}
+                  </span>
                 ))}
               </div>
             </div>
@@ -93,15 +110,13 @@ export function Footer({ footer, navigation, meta }) {
         <div className="px-6 py-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 font-mono text-[10px] tracking-[0.15em] text-[#F4F4F0]/45">
           <span>{footer.copyright}</span>
           <div className="flex items-center gap-6">
-            <span className="hidden xl:inline text-[#F4F4F0]/35">
-              {footer.architectureNote}
-            </span>
-            <a
-              href="#top"
-              className="text-[#F4F4F0]/80 hover:text-[#800028] transition-colors"
+            <button
+              type="button"
+              onClick={() => onNavigate('inicio')}
+              className="text-[#F4F4F0]/80 hover:text-[#800028] transition-colors cursor-pointer"
             >
               {footer.backToTopLabel}
-            </a>
+            </button>
           </div>
         </div>
       </div>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Fondo carbón oscuro #1D1E22 -->
+  <rect width="64" height="64" fill="#1D1E22" />
+  
+  <!-- Borde arquitectónico carmesí #800028 -->
+  <rect x="1" y="1" width="62" height="62" fill="none" stroke="#800028" stroke-width="2" />
+  
+  <!-- Líneas de cuadrícula constructiva de 1px -->
+  <line x1="16" y1="0" x2="16" y2="64" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1" />
+  <line x1="48" y1="0" x2="48" y2="64" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1" />
+  <line x1="0" y1="20" x2="64" y2="20" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1" />
+  <line x1="0" y1="44" x2="64" y2="44" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1" />
+
+  <!-- Monograma monumental 'S' en carmesí #800028 y blanco hueso #F4F4F0 -->
+  <text 
+    x="32" 
+    y="47" 
+    font-family="'Anton', 'Bebas Neue', Impact, sans-serif" 
+    font-size="44" 
+    font-weight="bold" 
+    fill="#800028" 
+    text-anchor="middle"
+    letter-spacing="-1"
+  >S</text>
+
+  <!-- Marca técnica de registro esquina -->
+  <rect x="4" y="4" width="3" height="3" fill="#F4F4F0" />
+</svg>

@@ -10,16 +10,21 @@ import {
   Users,
   X,
 } from 'lucide-react';
+import { ScreenNav } from '../components/layout/ScreenNav';
 import { SectionHeader } from '../components/ui/SectionHeader';
 import { TechTag } from '../components/ui/TechTag';
 
 /**
- * Sección [02. EXPOSICIONES] — Directorio Curatorial Interactivo:
- * Al pasar el cursor o hacer clic sobre una exposición de la lista índice,
- * despliega su ficha técnica completa, galería rápida B&N → Color con zoom sutil
- * y módulo dedicado para video documental de sala.
+ * Pantalla [02. EXPOSICIONES] — Directorio Curatorial Interactivo:
+ * Al seleccionar cualquier exposición de la lista, despliega su ficha técnica completa,
+ * galería rápida B&N → Color con zoom y visor documental de sala.
  */
-export function ExhibitionsDirectory({ exhibitions }) {
+export function ExhibitionsDirectory({
+  exhibitions,
+  onNavigate,
+  onOpenIndexDrawer,
+  navigation,
+}) {
   const [selectedId, setSelectedId] = useState(exhibitions.items[0]?.id);
   const [videoPreviewActive, setVideoPreviewActive] = useState(false);
   const [lightboxPlate, setLightboxPlate] = useState(null);
@@ -36,15 +41,12 @@ export function ExhibitionsDirectory({ exhibitions }) {
   };
 
   return (
-    <section
-      id="exposiciones"
-      className="relative z-20 border-b border-white/15 bg-[#1D1E22]"
-    >
+    <section className="relative z-20 bg-[#1D1E22]">
       <div className="mx-auto max-w-[1440px] border-x border-white/15">
         <SectionHeader
           index={exhibitions.index}
           headerTag={exhibitions.headerTag}
-          cyrillicTag={exhibitions.cyrillicTag}
+          categoryTag={exhibitions.categoryTag}
           title={exhibitions.title}
           subtitle={exhibitions.subtitle}
           countLabel={`REGISTROS // 0${exhibitions.items.length} MONTAJES`}
@@ -75,7 +77,7 @@ export function ExhibitionsDirectory({ exhibitions }) {
                     onClick={() => handleSelectExhibition(item.id)}
                     className={`w-full text-left p-6 sm:p-7 transition-colors duration-200 relative group cursor-pointer ${
                       isActive
-                        ? 'bg-[#800028]/16 text-[#F4F4F0]'
+                        ? 'bg-[#800028]/20 text-[#F4F4F0]'
                         : 'hover:bg-white/[0.03] text-[#F4F4F0]/75'
                     }`}
                   >
@@ -139,7 +141,7 @@ export function ExhibitionsDirectory({ exhibitions }) {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 className="flex flex-col"
               >
                 {/* 1. Cabecera del expediente + Sinopsis curatorial */}
@@ -216,7 +218,7 @@ export function ExhibitionsDirectory({ exhibitions }) {
                   </div>
                 </div>
 
-                {/* 3. Galería Rápida B&N → Color + Zoom Sutil en Hover */}
+                {/* 3. Galería Rápida B&N → Color */}
                 <div className="border-b border-white/15">
                   <div className="px-6 sm:px-8 py-2.5 border-b border-white/15 bg-[#16171A] flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.18em]">
                     <span className="text-[#F4F4F0]/75">
@@ -272,81 +274,66 @@ export function ExhibitionsDirectory({ exhibitions }) {
                   </div>
 
                   <div className="relative aspect-video border border-white/15 bg-[#111215] overflow-hidden group">
-                    {activeExhibition.video.videoUrl && videoPreviewActive ? (
-                      <video
-                        src={activeExhibition.video.videoUrl}
-                        controls
-                        autoPlay
-                        className="h-full w-full object-cover"
-                      />
-                    ) : (
-                      <>
-                        <img
-                          src={activeExhibition.video.poster}
-                          alt={activeExhibition.video.title}
-                          loading="lazy"
-                          className={`h-full w-full object-cover transition-all duration-700 ${
-                            videoPreviewActive
-                              ? 'grayscale-0 scale-105 brightness-90'
-                              : 'grayscale contrast-125 brightness-50 group-hover:brightness-65'
-                          }`}
-                        />
+                    <img
+                      src={activeExhibition.video.poster}
+                      alt={activeExhibition.video.title}
+                      loading="lazy"
+                      className={`h-full w-full object-cover transition-all duration-700 ${
+                        videoPreviewActive
+                          ? 'grayscale-0 scale-105 brightness-90'
+                          : 'grayscale contrast-125 brightness-50 group-hover:brightness-65'
+                      }`}
+                    />
 
-                        {/* Retícula técnica del visor audiovisual */}
-                        <div
-                          aria-hidden="true"
-                          className="pointer-events-none absolute inset-4 border border-white/15 flex flex-col justify-between p-3 sm:p-4"
-                        >
-                          <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.16em] text-[#F4F4F0]/75">
-                            <span className="inline-flex items-center gap-2">
-                              <span
-                                className={`h-2 w-2 rounded-full ${
-                                  videoPreviewActive
-                                    ? 'bg-[#800028] animate-ping'
-                                    : 'bg-[#800028]'
-                                }`}
-                              />
-                              {videoPreviewActive ? 'SIGNAL // ACTIVE REEL' : 'STANDBY // ARCHIVE VTR'}
-                            </span>
-                            <span>TC 00:00 — {activeExhibition.video.duration}</span>
-                          </div>
+                    {/* Retícula técnica del visor */}
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-4 border border-white/15 flex flex-col justify-between p-3 sm:p-4"
+                    >
+                      <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.16em] text-[#F4F4F0]/75">
+                        <span className="inline-flex items-center gap-2">
+                          <span
+                            className={`h-2 w-2 rounded-full ${
+                              videoPreviewActive
+                                ? 'bg-[#800028] animate-ping'
+                                : 'bg-[#800028]'
+                            }`}
+                          />
+                          {videoPreviewActive ? 'SEÑAL ACTIVA' : 'SALA DE ARCHIVO'}
+                        </span>
+                        <span>00:00 / {activeExhibition.video.duration}</span>
+                      </div>
 
-                          <div className="flex items-end justify-between gap-4">
-                            <div className="max-w-md">
-                              <p className="font-mono text-xs uppercase tracking-[0.14em] text-[#F4F4F0] font-bold">
-                                {activeExhibition.video.title}
-                              </p>
-                              <p className="mt-1 font-mono text-[10px] leading-relaxed text-[#F4F4F0]/65">
-                                {activeExhibition.video.note}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
+                      <div className="max-w-md">
+                        <p className="font-mono text-xs uppercase tracking-[0.14em] text-[#F4F4F0] font-bold">
+                          {activeExhibition.video.title}
+                        </p>
+                        <p className="mt-1 font-mono text-[10px] leading-relaxed text-[#F4F4F0]/65">
+                          {activeExhibition.video.note}
+                        </p>
+                      </div>
+                    </div>
 
-                        {/* Control central de activación de espacio de video */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setVideoPreviewActive((prev) => !prev)
-                            }
-                            className="inline-flex items-center gap-3 px-5 py-3 border border-[#800028] bg-[#1D1E22]/90 hover:bg-[#800028] text-[#F4F4F0] font-mono text-xs uppercase tracking-[0.16em] transition-colors cursor-pointer shadow-lg"
-                          >
-                            {videoPreviewActive ? (
-                              <>
-                                <Square size={13} strokeWidth={1.75} />
-                                {exhibitions.labels.videoCloseLabel}
-                              </>
-                            ) : (
-                              <>
-                                <Play size={14} strokeWidth={1.75} className="fill-current" />
-                                {exhibitions.labels.videoActionLabel}
-                              </>
-                            )}
-                          </button>
-                        </div>
-                      </>
-                    )}
+                    {/* Botón central de activación */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <button
+                        type="button"
+                        onClick={() => setVideoPreviewActive((prev) => !prev)}
+                        className="inline-flex items-center gap-3 px-5 py-3 border border-[#800028] bg-[#1D1E22]/90 hover:bg-[#800028] text-[#F4F4F0] font-mono text-xs uppercase tracking-[0.16em] transition-colors cursor-pointer shadow-lg"
+                      >
+                        {videoPreviewActive ? (
+                          <>
+                            <Square size={13} strokeWidth={1.75} />
+                            {exhibitions.labels.videoCloseLabel}
+                          </>
+                        ) : (
+                          <>
+                            <Play size={14} strokeWidth={1.75} className="fill-current" />
+                            {exhibitions.labels.videoActionLabel}
+                          </>
+                        )}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -355,7 +342,7 @@ export function ExhibitionsDirectory({ exhibitions }) {
         </div>
       </div>
 
-      {/* Lightbox de inspección de lámina fotográfica */}
+      {/* Lightbox modal de lámina fotográfica */}
       <AnimatePresence>
         {lightboxPlate && (
           <motion.div
@@ -399,6 +386,14 @@ export function ExhibitionsDirectory({ exhibitions }) {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Barra de navegación técnica para volver al inicio o seleccionar otra sección */}
+      <ScreenNav
+        currentScreen="exposiciones"
+        onNavigate={onNavigate}
+        onOpenIndexDrawer={onOpenIndexDrawer}
+        navigation={navigation}
+      />
     </section>
   );
 }
